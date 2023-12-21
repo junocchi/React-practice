@@ -152,7 +152,7 @@ const book = getBook(2);
 book; //returns book 2
 
 // Destructuring objects
-const { title, author, genres } = book;
+const { title, author, genres, publicationDate } = book;
 
 // Destructuring arrays
 //const [firstGenre, secondGenre] = genres;
@@ -183,3 +183,9 @@ const updatedBook1 = {
 };
 
 updatedBook1;
+
+const summary = `${title} is a book published in ${
+  publicationDate.split("-")[0]
+}.`;
+summary;
+// 'The Cyberiad is a book published in 1965.`
