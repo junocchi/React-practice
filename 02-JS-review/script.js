@@ -152,7 +152,8 @@ const book = getBook(2);
 book; //returns book 2
 
 // Destructuring objects
-const { title, author, genres, publicationDate } = book;
+const { title, author, genres, publicationDate, pages, hasMovieAdaptation } =
+  book;
 
 // Destructuring arrays
 //const [firstGenre, secondGenre] = genres;
@@ -189,3 +190,13 @@ const summary = `${title} is a book published in ${
 }.`;
 summary;
 // 'The Cyberiad is a book published in 1965.`
+
+const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
+
+console.log(pagesRange);
+// 'less than 1000'
+
+console.log(
+  `The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie.`,
+);
+// The book has not been adapted as a movie.
