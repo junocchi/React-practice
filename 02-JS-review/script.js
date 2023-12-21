@@ -200,3 +200,14 @@ console.log(
   `The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie.`,
 );
 // The book has not been adapted as a movie.
+
+// old way of writing functions / still used for long functions. Need to write the 'return' word
+function getMonth(str) {
+  return str.split("-")[1];
+}
+console.log(getMonth(publicationDate)); // 01
+
+// arrow function is the new way of writing short functions / implicit return
+// automatically returns whatever is on the right side of the arrow =>
+const getYear = (str) => str.split("-")[0];
+console.log(getYear(publicationDate)); // 1965
