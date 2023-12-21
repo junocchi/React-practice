@@ -159,8 +159,12 @@ const { title, author, genres } = book;
 //const [firstGenre, secondGenre] = genres;
 
 // Rest element (...)
-const [firstGenre, secondGenre, ...otherGenres] = genres;
-console.log(title, author, firstGenre, secondGenre, otherGenres);
-// ['speculative fiction', 'short stories', 'fantasy']
+// const [firstGenre, secondGenre, ...otherGenres] = genres;
+// console.log(title, author, firstGenre, secondGenre, otherGenres);
+// 'The Cyberiad Stanislaw Lem science fiction humor [ \'speculative fiction\', \'short stories\', \'fantasy\' ]'
+
+// skipping the secondGenre and adding a rest element
+const [firstGenre, , thirdGenre, ...otherGenres] = genres;
 
 console.log(otherGenres);
+// ['short stories', 'fantasy']
