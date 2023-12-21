@@ -1,3 +1,5 @@
+// to run JavaScript code right inside VS code, without us having to connect this script with some HTML file, click 'shift + command + p' to open the search bar and search for 'Quokka.js: Start on current file'. It will open the OUTPUT panel and activate the tool wallaby on the activity panel, on the left of your VS Code.
+
 const data = [
   {
     id: 1,
@@ -146,9 +148,6 @@ function getBook(id) {
 const books = getBooks();
 books;
 
-const book2 = getBook(2);
-book2;
-
 const book = getBook(2);
 book; //returns book 2
 
@@ -165,6 +164,22 @@ const { title, author, genres } = book;
 
 // skipping the secondGenre and adding a rest element
 const [firstGenre, , thirdGenre, ...otherGenres] = genres;
-
 console.log(otherGenres);
 // ['short stories', 'fantasy']
+
+// spread operator with arrays
+const newGenres = [...genres, "epic fiction"];
+console.log(newGenres);
+// [ 'science fiction', 'humor', 'speculative fiction', 'short stories', 'fantasy', 'epic fiction' ]
+
+// spread operator with objects
+const book1 = getBook(1);
+book1;
+
+const updatedBook1 = {
+  ...book1,
+  movieReleasedDate: "2001-12-19",
+  pages: 500,
+};
+
+updatedBook1;
