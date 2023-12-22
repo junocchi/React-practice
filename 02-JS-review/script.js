@@ -152,8 +152,15 @@ const book = getBook(2);
 book; //returns book 2
 
 // Destructuring objects
-const { title, author, genres, publicationDate, pages, hasMovieAdaptation } =
-  book;
+const {
+  title,
+  author,
+  genres,
+  publicationDate,
+  pages,
+  hasMovieAdaptation,
+  translations,
+} = book;
 
 // Destructuring arrays
 //const [firstGenre, secondGenre] = genres;
@@ -211,3 +218,31 @@ console.log(getMonth(publicationDate)); // 01
 // automatically returns whatever is on the right side of the arrow =>
 const getYear = (str) => str.split("-")[0];
 console.log(getYear(publicationDate)); // 1965
+
+console.log(pages && hasMovieAdaptation);
+// false (if book id 2)
+// true (if book id 1)
+
+console.log(hasMovieAdaptation && pages);
+console.log(pages && hasMovieAdaptation);
+// falsy values:
+console.log(0 && pages);
+console.log({} && pages);
+
+// truthy values:
+console.log(23 && pages);
+console.log("false" && pages);
+
+// short-circuiting with OR
+console.log(pages || hasMovieAdaptation); // 1216 (with book id 1)
+console.log(hasMovieAdaptation || pages); // true (with book id 1)
+
+const spanishTranslation = book.translations.spanish || "Not translated";
+console.log(spanishTranslation);
+
+const countWrongReviews = book.reviews.librarything.reviewsCount || "No data";
+console.log(countWrongReviews);
+
+// short-circuiting with Nullish coalescing operator
+const countReviews = book.reviews.librarything.reviewsCount ?? "No data";
+console.log(countReviews);
