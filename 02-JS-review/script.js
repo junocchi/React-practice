@@ -148,7 +148,7 @@ function getBook(id) {
 const books = getBooks();
 books;
 
-const book = getBook(2);
+const book = getBook(1);
 book; //returns book 2
 
 // Destructuring objects
@@ -246,3 +246,21 @@ console.log(countWrongReviews);
 // short-circuiting with Nullish coalescing operator
 const countReviews = book.reviews.librarything.reviewsCount ?? "No data";
 console.log(countReviews);
+
+// chaining
+// the function below works if both variables have a count. if one of them doesn't, it will be undefined and it will return an error when trying to read undefined.reviewsCount
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything.reviewsCount;
+  return goodreads + librarything;
+}
+console.log(getTotalReviewCount(book));
+
+// optional chaining
+function getTotalReviewCountWithOptionalChaining(book) {
+  const goodreads = book.reviews?.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+console.log(getTotalReviewCountWithOptionalChaining(book));
