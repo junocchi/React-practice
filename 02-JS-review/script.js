@@ -137,6 +137,7 @@ const data = [
   },
 ];
 
+/*
 function getBooks() {
   return data;
 }
@@ -145,13 +146,14 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
+// Destructuring objects
 const books = getBooks();
 books;
 
-const book = getBook(1);
+const book = getBook(2);
 book; //returns book 2
 
-// Destructuring objects
+
 const {
   title,
   author,
@@ -255,7 +257,7 @@ function getTotalReviewCount(book) {
   const librarything = book.reviews.librarything.reviewsCount;
   return goodreads + librarything;
 }
-console.log(getTotalReviewCount(book));
+console.log(getTotalReviewCount(book)); // 812
 
 // optional chaining
 function getTotalReviewCountWithOptionalChaining(book) {
@@ -263,4 +265,75 @@ function getTotalReviewCountWithOptionalChaining(book) {
   const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
   return goodreads + librarything;
 }
-console.log(getTotalReviewCountWithOptionalChaining(book));
+console.log(getTotalReviewCountWithOptionalChaining(book)); // 812
+*/
+
+function getBooks() {
+  return data;
+}
+
+function getBook(id) {
+  return data.find((d) => d.id === id);
+}
+
+const books = getBooks();
+
+const titles = books.map((book) => book.title);
+titles; // [ 'The Lord of the Rings', 'The Cyberiad', 'Dune', 'Harry Potter...]
+
+// array map method
+const doubleNum = [1, 2, 3, 4, 5].map((element) => element * 2);
+console.log(doubleNum); // [2, 4, 6, 8, 10]
+
+// array map method, with arrow function and curly braces option 1 (too much code)
+const essentialData1 = books.map((book) => {
+  return {
+    title: book.title,
+    author: book.author,
+  };
+});
+essentialData1;
+
+// array map method, with arrow function and curly braces option 2
+const essentialData2 = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+}));
+essentialData2; //
+/*
+[ { title: 'The Lord of the Rings', author: 'J. R. R. Tolkien' },
+  { title: 'The Cyberiad', author: 'Stanislaw Lem' },
+  { title: 'Dune', author: 'Frank Herbert' },
+  { title: 'Harry Potter and the Philosopher\'s Stone',
+    author: 'J. K. Rowling' },
+  { title: 'A Game of Thrones', author: 'George R. R. Martin' } ]
+  */
+
+// array map method with some computation
+function getTotalReviewCountWithOptionalChaining(book) {
+  const goodreads = book.reviews?.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  return goodreads + librarything;
+}
+
+const essentialData3 = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+  reviewsCount: getTotalReviewCountWithOptionalChaining(book),
+}));
+essentialData3;
+/*
+[ { title: 'The Lord of the Rings',
+    author: 'J. R. R. Tolkien',
+    reviewsCount: 13869 },
+  { title: 'The Cyberiad',
+    author: 'Stanislaw Lem',
+    reviewsCount: 812 },
+  { title: 'Dune', author: 'Frank Herbert', reviewsCount: 49701 },
+  { title: 'Harry Potter and the Philosopher\'s Stone',
+    author: 'J. K. Rowling',
+    reviewsCount: 142585 },
+  { title: 'A Game of Thrones',
+    author: 'George R. R. Martin',
+    reviewsCount: 60153 } ]
+*/
