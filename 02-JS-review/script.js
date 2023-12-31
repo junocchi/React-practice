@@ -337,3 +337,30 @@ essentialData3;
     author: 'George R. R. Martin',
     reviewsCount: 60153 } ]
 */
+
+// array.filter method
+const longBooks = books.filter((book) => book.pages > 500);
+longBooks;
+// returns books with ID 1, 3 and 5 because these are the ones with more than 500 pages
+
+// array.filter with multiple conditions (chaining methods)
+const longBooksWithMovie = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+console.log(longBooksWithMovie);
+// returns books with ID 1 and 5 because these are the ones with more than 500 pages and with a movie adaptation
+
+// array.filter with multiple conditions (chaining methods), including other methods (like .map)
+const longAdventureBooksWithMovie = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation)
+  .filter((book) => book.genres.includes("adventure"))
+  .map((book) => book.title);
+console.log(longAdventureBooksWithMovie);
+// [ 'The Lord of the Rigs' ]
+
+// array.reduce method
+const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+console.log(pagesAllBooks); // 3227
+
+// array.sort method
