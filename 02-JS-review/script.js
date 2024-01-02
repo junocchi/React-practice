@@ -363,4 +363,17 @@ console.log(longAdventureBooksWithMovie);
 const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
 console.log(pagesAllBooks); // 3227
 
-// array.sort method
+// array.slice().sort ascending
+const x = [3, 7, 1, 9, 6];
+const sortedAsc = x.slice().sort((a, b) => a - b);
+console.log(sortedAsc); // [ 1, 3, 6, 7, 9 ]
+console.log(x); // [ 3, 7, 1, 9, 6 ]
+
+// array.slice().sort descending
+const sortedDesc = x.slice().sort((a, b) => b - a);
+console.log(sortedDesc); // [ 9, 7, 6, 3, 1 ]
+console.log(x); // [ 3, 7, 1, 9, 6 ]
+
+// array.slice().sort ascending by page number
+const sortedByPageNumber = books.slice().sort((a, b) => a.pages - b.pages);
+console.log(sortedByPageNumber);
