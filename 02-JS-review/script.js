@@ -377,3 +377,22 @@ console.log(x); // [ 3, 7, 1, 9, 6 ]
 // array.slice().sort ascending by page number
 const sortedByPageNumber = books.slice().sort((a, b) => a.pages - b.pages);
 console.log(sortedByPageNumber);
+
+// 1) Add a book object to an array
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secrets",
+  author: "J. K. Rowling",
+};
+const booksAfterAdd = [...books, newBook];
+console.log(booksAfterAdd);
+
+// 2) Delete a book object from an array
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+console.log(booksAfterDelete);
+
+// 3) Update a book in the array
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 6 ? { ...book, hasMovieAdaptation: true } : book,
+);
+console.log(booksAfterUpdate); // now the book with id 6 has 'true' for hasMovieAdaptation
