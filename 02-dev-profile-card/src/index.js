@@ -29,7 +29,7 @@ function Intro() {
   );
 }
 
-function SkillList(props) {
+function SkillList() {
   return (
     <div className="skill-list">
       <Skill skillName="HTML+CSS" bgColor="blue" emoji="🧑‍🎨" />
