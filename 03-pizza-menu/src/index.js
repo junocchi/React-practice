@@ -86,8 +86,15 @@ function Footer() {
   console.log(isOpen);
   return (
     <footer className="footer">
-      We're open from 12:00 to 22:00. Come visit us or order online.<br></br>
-      The ⏰ time now is {new Date().toLocaleTimeString()}.
+      {isOpen && (
+        <div className="order">
+          <p>
+            We're open until {closeHour}:00. Come visit us or order online.
+            <br></br>⏰ time now is {new Date().toLocaleTimeString()}.
+          </p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
 }
