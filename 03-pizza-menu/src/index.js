@@ -66,15 +66,45 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData; // keep if we want the pizzas showing
+  // const pizzas = []; // keep if we don't want any pizzas showing
+  const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObj={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {numPizzas > 0 ? (
+        <>
+          <p>
+            Authentic Italian cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p>We are still working on our menu. Please come back later 😊</p>
+      )}
     </main>
+  );
+}
+
+function Pizza({ pizzaObj }) {
+  console.log(pizzaObj);
+
+  // if (pizzaObj.soldOut) return null;
+  return (
+    // ternary operator is used in className to grayscale the sold out pizzas
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
+      <div>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
+      </div>
+    </li>
   );
 }
 
@@ -86,22 +116,29 @@ function Footer() {
   console.log(isOpen);
   return (
     <footer className="footer">
-      We're open from 12:00 to 22:00. Come visit us or order online.<br></br>
-      The ⏰ time now is {new Date().toLocaleTimeString()}.
+      {isOpen ? (
+        <Order closeHour={closeHour} openHour={openHour} />
+      ) : (
+        <p>
+          We are happy to welcome you between {openHour}:00 and {closeHour}:00.
+        </p>
+      )}
     </footer>
   );
 }
 
-function Pizza(props) {
+function Order({ openHour, closeHour }) {
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
+  const currentMinutes = currentDate.getMinutes().toString().padStart(2, "0");
   return (
-    <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
-      <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
-      </div>
-    </li>
+    <div className="order">
+      <p>
+        We're open from {openHour}:00 until {closeHour}:00. Come visit us or
+        order online - ⏰ time now is {`${currentHour + ":" + currentMinutes}`}.
+      </p>
+      <button className="btn">Order</button>
+    </div>
   );
 }
 
