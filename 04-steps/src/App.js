@@ -8,12 +8,17 @@ const messages = [
 
 export default function App() {
   const [step, setStep] = useState(1);
+  const [name, setName] = useState({ nickname: "Ju" });
 
   function handlePrevious() {
     if (step > 1) setStep(step - 1);
+    setName({ nickname: "Lila" });
+    // mutating objects as below is a BAD practice. React is all about immutability and functional state updates.
+    // name.nickname = "Lila"
   }
   function handleNext() {
     if (step < 3) setStep(step + 1);
+    setName({ nickname: "Ju" });
   }
 
   return (
@@ -24,7 +29,7 @@ export default function App() {
         <div className={step >= 3 ? "active" : ""}>3</div>
       </div>
       <p className="message">
-        Step {step}: {messages[step - 1]}
+        Step {step}: {messages[step - 1]} {name.nickname}
       </p>
       <div className="buttons">
         <button
