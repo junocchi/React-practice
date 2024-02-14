@@ -15,3 +15,12 @@
 <p align="center">
 <img width="450" alt="Pizza place website with menu" src="03-pizza-menu/public/pizza-menu.png">
 </p>
+
+## 04-steps
+
+## 04.1-date-counter-challenge-v1
+
+<p align="justify">Using useState to update the jumps and counts.</p>
+<p align="center">
+<img width="450" alt="Pizza place website with menu" src="04.1-date-counter/public/04.1-date-counter-v1.png">
+</p>
