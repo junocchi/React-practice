@@ -52,13 +52,13 @@ function FlashCards() {
 
   return (
     <div className="flashcards">
-      {questions.map((item) => (
+      {questions.map((card) => (
         <div
-          key={item.id}
-          onClick={() => handleClick(item.id)}
-          className={item.id === selectedId ? "selected" : null}
+          key={card.id}
+          onClick={() => handleClick(card.id)}
+          className={card.id === selectedId ? "selected" : null}
         >
-          <p>{item.id === selectedId ? item.answer : item.question}</p>
+          <p>{card.id === selectedId ? card.answer : card.question}</p>
         </div>
       ))}
     </div>
