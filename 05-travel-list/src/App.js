@@ -25,9 +25,28 @@ function Logo() {
 }
 
 function Form() {
+  const [itemDescription, setItemDescription] = useState("");
+  const [itemQuantity, setItemQuantity] = useState(1);
+
   function handleSubmit(e) {
     // we use this to avoid page reloading when the user presses the button to submit the form
     e.preventDefault();
+
+    if (!itemDescription) return;
+
+    const newItemId = initialItems.length + 1;
+
+    const newItem = {
+      itemDescription,
+      itemQuantity,
+      packed: false,
+      id: newItemId,
+    };
+    console.log(newItem);
+
+    // to reset the original form values
+    setItemDescription("");
+    setItemQuantity(1);
   }
 
   return (
@@ -38,14 +57,33 @@ function Form() {
       }
     >
       <h3>What do you need for your 😍 trip?</h3>
-      <select>
+      <select
+        value={itemQuantity}
+        /* 
+        -as well as it happens with <input>, as soon as we add the property value here, React starts to control this element.
+        - itemQuantity is set to 1 at the moment, but below we will enable its state change
+         */
+        onChange={(e) => setItemQuantity(Number(e.target.value))} // this value is coming from "value={num}" below
+      >
         {Array.from({ length: 20 }, (value, index) => index + 1).map((num) => (
           <option key={num} value={num}>
             {num}
           </option>
         ))}
       </select>
-      <input type="text" placeholder="e.g. t-shirt"></input>
+      <input
+        type="text"
+        placeholder="e.g. t-shirt"
+        value={itemDescription}
+        onChange={(e) => setItemDescription(e.target.value)}
+        /* this function always receives the event (e). 
+        - then, on the event we read "target"
+        - and "e.target" is the entire element
+        - and "e.target.value" is whatever text the user imputed 
+        - we always need the properties "value" and "onChange" because
+        - every time the user types in the input field, we re-set the state to the string they typed, which will then re-render this view. So the new state of "description" will get placed as a value. 
+        */
+      ></input>
       <button>Add</button>
     </form>
   );
