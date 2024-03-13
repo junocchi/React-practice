@@ -11,44 +11,26 @@ export default function App() {
 function Counter() {
   const [count, setCount] = useState(0);
   const [jump, setJump] = useState(1);
-
   const date = new Date("february 14 2024");
   date.setDate(date.getDate() + count);
 
-  function handleReset() {
-    setCount(0);
-    setJump(1);
-  }
-
   return (
     <div>
-      <div className="jump">
+      <div>
         <p>Date Counter Challenge</p>
-
-        {/* range slider  */}
-        <input
-          type="range"
-          min="0"
-          max="10"
-          value={jump}
-          /* handle the event */
-          onChange={(e) => setJump(Number(e.target.value))}
-        />
+        <button onClick={() => setJump((currentJump) => currentJump - 1)}>
+          -
+        </button>
         <span> Jump: {jump} </span>
+        <button onClick={() => setJump((currentJump) => currentJump + 1)}>
+          +
+        </button>
       </div>
       <div>
         <button onClick={() => setCount((currentCount) => currentCount - jump)}>
           -
         </button>
-
-        {/* input count field, between the - and + buttons */}
-        <input
-          type="text"
-          value={count}
-          /* handle the event */
-          onChange={(e) => setCount(Number(e.target.value))}
-        />
-
+        <span> Count: {count} </span>
         <button onClick={() => setCount((currentCount) => currentCount + jump)}>
           +
         </button>
@@ -62,13 +44,6 @@ function Counter() {
           </span>
           <span> {date.toDateString()} 🎉</span>
         </p>
-
-        {/* conditionally render the reset button */}
-        {count !== 0 || jump !== 1 ? (
-          <div>
-            <button onClick={handleReset}>Reset</button>
-          </div>
-        ) : null}
       </div>
     </div>
   );

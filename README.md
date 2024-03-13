@@ -25,6 +25,13 @@
 <img width="450" alt="Pizza place website with menu" src="04.1-date-counter/public/04.1-date-counter-v1.png">
 </p>
 
+## 04.1-date-counter-challenge-v2
+
+<p align="justify">Add a slider (input element, from 1 to 10) for the jumps, accept the count as a user input, and add a reset button (only visible after the original values change) which will bring the slider to 1 and counter to 0.</p>
+<p align="center">
+<img width="450" alt="Pizza place website with menu" src="04.1-date-counter/public/04.1-date-counter-v2.png">
+</p>
+
 ## 05-travel-list
 
 ## 05.1-flashcards
